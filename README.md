@@ -1,2 +1,3 @@
 # repo-heatlh-checker
-test for py project
+
+This project is practice for scanning a repository from github
