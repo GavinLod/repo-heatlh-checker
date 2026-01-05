@@ -32,3 +32,30 @@ def check_required_files(repo_path : Path) -> list[CheckResult]:
             )
         
     return results
+
+def check_github_actions_present(repo_path: Path) -> list[CheckResult]:
+    """ Check that the repo has at least on GitHub Actions workflow"""
+
+    workflows_dir = repo_path / ".github" / "workflows"
+
+    if not workflows_dir.exists():
+        return [
+            CheckResult(
+                name = "ci:github_actions",
+                passed = False,
+                message = "Missing .github/workflows directory",
+
+            )
+        ]
+    workflow_files = list(workflows_dir.glob("*.yml")) + list(workflows_dir.glob("*.yaml"))
+    passed = len(workflow_files) > 0
+
+    return [
+        CheckResult(
+            name = "ci:github_actions",
+            passed=passed,
+            message="Found workflow(s)" if passed else "No workflow files found",
+
+
+        )
+    ]

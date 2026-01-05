@@ -5,7 +5,7 @@ from repo_checker.checks import check_required_files, check_github_actions_prese
 def test_check_required_files(tmp_path: Path):
     (tmp_path / "README.md").touch()
     (tmp_path / "LICENSE").touch()
-    # Intentionally missing .gitignore
+    #Intentionally missing .gitignore
 
     results = check_required_files(tmp_path)
     result_map = {r.name: r.passed for r in results}

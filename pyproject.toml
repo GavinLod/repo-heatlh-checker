@@ -8,6 +8,13 @@ version = "0.1.0"
 description = "CLI tool to validate repository health"
 requires-python = ">=3.10"
 
+# This gives a real command to run: repo-health-checker <path>
+[project.scripts]
+repo-health-checker = "repo_checker.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["repo_checker*"]
